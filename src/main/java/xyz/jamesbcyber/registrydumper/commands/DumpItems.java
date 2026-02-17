@@ -16,9 +16,7 @@ import net.minecraftforge.registries.IForgeRegistry;
 import xyz.jamesbcyber.registrydumper.Utils.FileHandling;
 import xyz.jamesbcyber.registrydumper.Utils.MessageFormatting;
 
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
+import com.google.gson.*;
 import java.io.File;
 import java.util.*;
 
