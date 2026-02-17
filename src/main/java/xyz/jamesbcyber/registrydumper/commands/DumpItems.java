@@ -48,7 +48,7 @@ public class DumpItems {
                 String message = gson.toJson(ResourceMap);
 
 
-                File logfile = FileHandling.writeFile(FileHandling.Files.LOG_DIRECTORY, "Namespace.json", message);
+                File logfile = FileHandling.writeFile(new File("logs/registrydumper/"), "AllItems.json", message);
                 if (logfile != null) {
                     MessageFormatting.sendOpenLogFileMessage(player, logfile.getAbsolutePath(), "Click for Dump");
                 } else {

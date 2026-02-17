@@ -6,13 +6,6 @@ import java.io.IOException;
 
 public class FileHandling {
 
-    public class Files{
-        public static final File LOG_DIRECTORY = new File("logs/datadump");
-        public static final File NAMESPACE_DIRECTORY = new File("logs/datadump/namespaces");
-        public static final File TAG_DIRECTORY = new File("logs/datadump/tags");
-    }
-
-
     public static File writeFile(File dir, String filename, String text){
         File file = new File(dir, filename);
         file.getParentFile().mkdirs();

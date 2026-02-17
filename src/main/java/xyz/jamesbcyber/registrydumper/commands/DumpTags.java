@@ -31,7 +31,7 @@ public class DumpTags {
                 Set<ResourceLocation> itemResources = itemRegistry.getKeys();
                 ITagManager<Item> tagManager = ForgeRegistries.ITEMS.tags();
 
-                String tagTemplate = "logs/registrydumper/tagdump/%s/tags/%s%s";
+                String tagTemplate = "logs/registrydumper/tagdump/%s/tags/items/%s%s";
                 tagManager.stream().forEach(iTag -> {
                     JsonObject json = new JsonObject();
                     JsonArray itemArray = new JsonArray();

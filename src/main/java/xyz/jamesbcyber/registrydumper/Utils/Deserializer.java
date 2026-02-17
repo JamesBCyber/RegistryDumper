@@ -399,7 +399,6 @@ public class Deserializer {
         return new JsonObject();
     }
 
-
     // Only armor_dye.json recipe
     // Will update if more options are provided
     private static JsonObject armorDyeToJson(ArmorDyeRecipe craftingRecipe) {
