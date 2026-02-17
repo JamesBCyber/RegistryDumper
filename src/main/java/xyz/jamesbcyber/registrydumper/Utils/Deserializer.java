@@ -259,44 +259,20 @@ public class Deserializer {
 
     private static JsonObject smithingTransformToJson(SmithingTransformRecipe craftingRecipe) {
         JsonObject json = new JsonObject();
-        json.addProperty("type", "minecraft:smithing_transformation");
-
-
-        Ingredient template = (Ingredient) getReflectedPrivate(craftingRecipe, "template");
-        Ingredient base = (Ingredient) getReflectedPrivate(craftingRecipe, "base");
-        Ingredient addition = (Ingredient) getReflectedPrivate(craftingRecipe, "addition");
-
-        if (template == null || base == null || addition == null){
-            System.err.println("Failed to get private value via reflection");
-            return new JsonObject();
-        }
-
-        json.add("template", template.toJson());
-        json.add("base", base.toJson());
-        json.add("addition", addition.toJson());
-
-        json.add("result", getResultJson(craftingRecipe));
-
+//        json.addProperty("type", "minecraft:smithing_transformation");
+//        json.add("template", getPrivateIngredient(craftingRecipe, "template"));
+//        json.add("base", getPrivateIngredient(craftingRecipe, "base"));
+//        json.add("addition", getPrivateIngredient(craftingRecipe, "addition"));
+//        json.add("result", getResultJson(craftingRecipe));
         return json;
     }
 
     private static JsonObject smithingTrimToJson(SmithingTrimRecipe craftingRecipe) {
         JsonObject json = new JsonObject();
-        json.addProperty("type", "minecraft:smithing_trim");
-
-        Ingredient template = (Ingredient) getReflectedPrivate(craftingRecipe, "template");
-        Ingredient base = (Ingredient) getReflectedPrivate(craftingRecipe, "base");
-        Ingredient addition = (Ingredient) getReflectedPrivate(craftingRecipe, "addition");
-
-        if (template == null || base == null || addition == null){
-            System.err.println("Failed to get private value via reflection");
-            return new JsonObject();
-        }
-
-        json.add("template", template.toJson());
-        json.add("base", base.toJson());
-        json.add("addition", addition.toJson());
-
+//        json.addProperty("type", "minecraft:smithing_trim");
+//        json.add("template", getPrivateIngredient(craftingRecipe, "p_267298_"));
+//        json.add("base", getPrivateIngredient(craftingRecipe, "p_266862_"));
+//        json.add("addition", getPrivateIngredient(craftingRecipe, "p_267050_"));
         return json;
     }
 
@@ -483,18 +459,53 @@ public class Deserializer {
         return new JsonObject();
     }
 
-    @Nullable
-    private static Object getReflectedPrivate(Object obj, String field){
-        Field f;
-        Object v;
+//    @Nullable
+//    private static Object getReflectedPrivate(Object obj, String field){
+//        Field f;
+//        Object v;
+//        try{
+//            f = obj.getClass().getDeclaredField(field);
+//            f.setAccessible(true);
+//            v = f.get(obj);
+//        } catch (Exception e){
+//            return null;
+//        }
+//        return v;
+//    }
+
+    private static JsonElement getPrivateIngredient(SmithingTrimRecipe recipe, String field){
+        Field fieldProperty;
+        JsonElement ing;
         try{
-            f = obj.getClass().getDeclaredField(field);
-            f.setAccessible(true);
-            v = f.get(obj);
+            fieldProperty = recipe.getClass().getDeclaredField(field);
+            fieldProperty.setAccessible(true);
+            ing = ((Ingredient) fieldProperty.get(recipe)).toJson();
         } catch (Exception e){
+            System.err.println("Failed to Read Private Variable");
+            System.err.println(recipe.getClass());
+            System.err.println(recipe);
+            System.err.println(e);
             return null;
         }
-        return v;
+        return ing;
+    }
+
+    @Nullable
+    private static JsonElement getPrivateIngredient(SmithingTransformRecipe recipe, String field){
+        Field fieldProperty;
+        JsonElement ing;
+        try{
+            fieldProperty = recipe.getClass().getDeclaredField(field);
+            fieldProperty.setAccessible(true);
+            ing = ((Ingredient) fieldProperty.get(recipe)).toJson();
+        } catch (Exception e){
+            System.err.println("Failed to Read Private Variable");
+            System.err.println(recipe.getClass());
+            System.err.println(recipe);
+            System.err.println(e);
+            return null;
+        }
+        return ing;
     }
 
 }

@@ -30,8 +30,6 @@ Currently Supported Mods and Recipes:
   - blasting
   - campfire_cooking
   - stonecutting
-  - \*smithing_trim
-  - \*smithing_transform
   
 - Farmers Delight
   - cooking
@@ -41,5 +39,3 @@ Currently Supported Mods and Recipes:
     - fermenting
     - pouring
 
-
-\**Its in the code but may not be functional*
